@@ -77,7 +77,7 @@ game.setDialogFrame(img`
     bbbbbbbbbbbbbbbbbbbbbbbb
     `)
 game.showLongText("Eat as many carrots as you can before the farmer catches you!", DialogLayout.Full)
-tiles.setTilemap(tilemap`level1`)
+tiles.setTilemap(tilemap`explore2`)
 let bunny = sprites.create(img`
     . . . . 1 . . . 1 . . . . . . . 
     . . . d 1 1 . d 1 1 . . . . . . 
