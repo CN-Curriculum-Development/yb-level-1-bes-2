@@ -18,7 +18,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.SpecialFood, function (sprite, o
         . . . e . . e . e . . . . . . 
         . . . . . . . . . . e . . . . 
         `)
-    info.changeScoreBy(3)
     otherSprite.destroy(effects.disintegrate, 2000)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -38,46 +37,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
         . . . e . . e . e . . . . . . 
         . . . . . . . . . . e . . . . 
         `)
-    info.changeScoreBy(1)
     otherSprite.destroy(effects.disintegrate, 2000)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    let mySprite: Sprite = null
     music.powerDown.play()
-    info.changeLifeBy(-1)
     scene.cameraShake(4, 500)
-    tiles.placeOnRandomTile(mySprite, sprites.castle.tilePath5)
 })
 let sprout: Sprite = null
 let carrot: Sprite = null
-game.setDialogFrame(img`
-    333333333333333333333333
-    3dddddddddddddddddddddd3
-    3d33333333333333333333d3
-    333333333333333333333333
-    b3bddb333333333333bddb3b
-    b3b33b333333333333b33b3b
-    b3bbbb333333333333bbbb3b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3333333333333333333333b
-    b3bddb333333333333bddb3b
-    b3b33b333333333333b33b3b
-    b3bbbb333333333333bbbb3b
-    bb33333333333333333333bb
-    bbbbbbbbbbbbbbbbbbbbbbbb
-    bbbbbbbbbbbbbbbbbbbbbbbb
-    `)
-game.showLongText("Eat as many carrots as you can before the farmer catches you!", DialogLayout.Full)
-tiles.setTilemap(tilemap`explore2`)
+tiles.setTilemap(tilemap`explore3`)
 let bunny = sprites.create(img`
     . . . . 1 . . . 1 . . . . . . . 
     . . . d 1 1 . d 1 1 . . . . . . 
@@ -97,7 +65,6 @@ let bunny = sprites.create(img`
     . . . . c c b c c c c c . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(bunny)
-tiles.placeOnRandomTile(bunny, sprites.castle.tilePath5)
 scene.cameraFollowSprite(bunny)
 let farmer = sprites.create(img`
     . . . . . b b c c c c . . . . . 
@@ -117,10 +84,8 @@ let farmer = sprites.create(img`
     . . . . f 8 8 6 6 8 8 f . . . . 
     . . . . . f f b b f f . . . . . 
     `, SpriteKind.Enemy)
-tiles.placeOnRandomTile(farmer, sprites.castle.tilePath5)
 farmer.follow(bunny, 25)
-info.setScore(0)
-info.setLife(3)
+tiles.placeOnRandomTile(bunny, assets.tile`transparency16`)
 game.onUpdateInterval(5000, function () {
     carrot = sprites.create(img`
         . . . . . . 6 . 6 . . . . . . . 
@@ -140,7 +105,6 @@ game.onUpdateInterval(5000, function () {
         . . . . . 4 4 e . . . . . . . . 
         . . . . . . 4 e . . . . . . . . 
         `, SpriteKind.SpecialFood)
-    tiles.placeOnRandomTile(carrot, sprites.castle.tilePath5)
 })
 game.onUpdateInterval(1000, function () {
     sprout = sprites.create(img`
@@ -159,5 +123,4 @@ game.onUpdateInterval(1000, function () {
         . . . e . . e . e . . . . . . 
         . . . . . . . . . . e . . . . 
         `, SpriteKind.Food)
-    tiles.placeOnRandomTile(sprout, sprites.castle.tilePath5)
 })
