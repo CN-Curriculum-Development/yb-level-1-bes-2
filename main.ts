@@ -45,7 +45,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     music.powerDown.play()
     info.changeLifeBy(-1)
     scene.cameraShake(4, 500)
-    tiles.placeOnRandomTile(otherSprite, assets.tile`myTile`)
+    tiles.placeOnRandomTile(otherSprite, sprites.castle.tilePath5)
 })
 let sprout: Sprite = null
 let carrot: Sprite = null
@@ -76,7 +76,7 @@ game.setDialogFrame(img`
     ..99999999999999999999..
     `)
 game.showLongText("Eat as many carrots as you can before the farmer catches you!", DialogLayout.Full)
-tiles.setTilemap(tilemap`level1`)
+tiles.setTilemap(tilemap`explore2`)
 let bunny = sprites.create(img`
     . . . . 1 . . . 1 . . . . . . . 
     . . . d 1 1 . d 1 1 . . . . . . 
@@ -96,7 +96,7 @@ let bunny = sprites.create(img`
     . . . . c c b c c c c c . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(bunny)
-tiles.placeOnRandomTile(bunny, assets.tile`myTile0`)
+tiles.placeOnRandomTile(bunny, sprites.castle.tilePath5)
 scene.cameraFollowSprite(carrot)
 let farmer = sprites.create(img`
     . . . . . b b c c c c . . . . . 
@@ -116,7 +116,7 @@ let farmer = sprites.create(img`
     . . . . f 8 8 6 6 8 8 f . . . . 
     . . . . . f f b b f f . . . . . 
     `, SpriteKind.Enemy)
-tiles.placeOnRandomTile(farmer, assets.tile`myTile0`)
+tiles.placeOnRandomTile(farmer, sprites.castle.tilePath5)
 farmer.follow(bunny, 25)
 info.setScore(0)
 info.setLife(3)
@@ -139,7 +139,7 @@ game.onUpdateInterval(5000, function () {
         . . . . . 4 4 e . . . . . . . . 
         . . . . . . 4 e . . . . . . . . 
         `, SpriteKind.SpecialFood)
-    tiles.placeOnRandomTile(carrot, assets.tile`myTile0`)
+    tiles.placeOnRandomTile(carrot, sprites.castle.tilePath5)
 })
 game.onUpdateInterval(1000, function () {
     sprout = sprites.create(img`
@@ -158,5 +158,5 @@ game.onUpdateInterval(1000, function () {
         . . . e . . e . e . . . . . . 
         . . . . . . . . . . e . . . . 
         `, SpriteKind.Food)
-    tiles.placeOnRandomTile(sprout, assets.tile`myTile0`)
+    tiles.placeOnRandomTile(sprout, sprites.castle.tilePath5)
 })
